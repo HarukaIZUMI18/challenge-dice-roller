@@ -1,17 +1,24 @@
 // à toi de jouer !
-const newDiv = document.createElement("div");
-newDiv.id = "player";
-newDiv.classList.add("dice");
-player.appendChild(newDiv);
-
-
-function generateDice(){
-	const randomNumber = Math.floor(Math.random() * 6) + 1;
-    
-	document.getElementById("player").innerHTML = randomNumber;
-    document.getElementById("newDiv").src = randomNumber + ".dice"*100;
-    console.log(randomNumber);
+const numberOfDice =parseInt(prompt("Combien de dés tu veux lancer?"));
+if(isNaN(numberOfDice)  || numberOfDice < 1 || numberOfDice > 15){
+  console.log("Choisi entre 1 et 15");
+} else {
+for(let index = 0; index < numberOfDice; index++)
+generateDice();
 }
 
 
-generateDice();
+
+function generateDice() {
+  const randomNumber = getRamdom(1, 6);
+ const dice = document.createElement('div');
+  dice.classList.add('dice');
+ 
+  dice.style.backgroundPositionX = `-${(randomNumber - 1) * 100}px`;
+
+  document.getElementById('player').append(dice);
+}
+
+function getRamdom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+} 
